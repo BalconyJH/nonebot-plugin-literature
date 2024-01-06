@@ -1,0 +1,99 @@
+[project]
+name = "nonebot-plugin-arxiv"
+version = "0.1.0"
+description = "arXiv as a place of connection among researchers, institutions, repositories, and to the world of open science."
+authors = [
+    { name = "BalconyJH", email = "balconyjh@gmail.com" },
+]
+dependencies = [
+    "setuptools>=68.2.2",
+    "nonebot-adapter-onebot>=2.3.1",
+    "uvicorn[standard]>=0.23.2",
+    "fastapi>=0.104.0",
+    "nonebot2>=2.1.1",
+    "nonebot-plugin-send-anything-anywhere>=0.3.2",
+    "pillow>=10.1.0",
+    "nonebot-plugin-localstore>=0.5.1",
+    "nonebot-plugin-apscheduler>=0.3.0",
+]
+requires-python = ">=3.8.1"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.nonebot]
+adapters = [
+    { name = "OneBot V12", module_name = "nonebot.adapters.onebot.v12", project_link = "nonebot-adapter-onebot", desc = "OneBot V12 协议" },
+    { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11", project_link = "nonebot-adapter-onebot", desc = "OneBot V11 协议" },
+]
+plugins = []
+plugin_dirs = []
+builtin_plugins = []
+
+[tool.pdm.dev-dependencies]
+test = [
+    "nonebug>=0.3.5",
+    "pytest-asyncio>=0.21.1",
+    "isort>=5.12.0",
+    "black>=23.7.0",
+    "pre-commit>=3.3.3",
+    "flake8>=6.1.0",
+    "nonebug-saa>=0.3.1",
+    "nb-cli>=1.2.8",
+    "pyright>=1.1.341",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.5.0",
+]
+
+[tool.pdm]
+package-type = "library"
+
+[tool.black]
+line-length = 120
+target-version = ["py38", "py39", "py310", "py311"]
+include = '\.pyi?$'
+extend-exclude = '''
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+length_sort = true
+skip_gitignore = true
+force_sort_within_sections = true
+extra_standard_library = ["typing_extensions"]
+
+[tool.ruff]
+select = ["E", "W", "F", "N", "UP", "C", "T", "PYI", "PT", "Q", "RUF"]
+ignore = ["E402", "C901", "UP037", "E501"]
+line-length = 120
+target-version = "py38"
+
+[tool.ruff.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pyright]
+pythonVersion = "3.8"
+pythonPlatform = "All"
+venvPath = "."
+venv = ".venv"
+executionEnvironments = [
+    { root = "./tests", extraPaths = [
+        "./",
+    ] },
+    { root = "./" },
+]
+
+typeCheckingMode = "basic"
+reportShadowedImports = false
+disableBytesTypePromotions = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
