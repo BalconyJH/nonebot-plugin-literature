@@ -1,7 +1,7 @@
 [project]
-name = "nonebot-plugin-arxiv"
+name = "nonebot-plugin-prxiv"
 version = "0.1.0"
-description = "arXiv as a place of connection among researchers, institutions, repositories, and to the world of open science."
+description = "prxiv as..."
 authors = [
     { name = "BalconyJH", email = "balconyjh@gmail.com" },
 ]
@@ -30,7 +30,7 @@ adapters = [
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11", project_link = "nonebot-adapter-onebot", desc = "OneBot V11 协议" },
 ]
 plugins = []
-plugin_dirs = []
+plugin_dirs = ["src/nonebot_plugin_prxiv"]
 builtin_plugins = []
 
 [tool.pdm.dev-dependencies]
@@ -43,7 +43,6 @@ test = [
     "flake8>=6.1.0",
     "nonebug-saa>=0.3.1",
     "nb-cli>=1.2.8",
-    "pyright>=1.1.341",
     "pytest-cov>=4.1.0",
     "pytest-xdist>=3.5.0",
 ]
@@ -67,7 +66,7 @@ force_sort_within_sections = true
 extra_standard_library = ["typing_extensions"]
 
 [tool.ruff]
-select = ["E", "W", "F", "N", "UP", "C", "T", "PYI", "PT", "Q", "RUF"]
+select = ["E", "W", "F", "UP", "C", "T", "PYI", "PT", "Q"]
 ignore = ["E402", "C901", "UP037", "E501"]
 line-length = 120
 target-version = "py38"

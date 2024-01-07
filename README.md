@@ -1,1 +1,1 @@
-# nonebot-plugin-arxiv
+# nonebot-plugin-prxiv

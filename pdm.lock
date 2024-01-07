@@ -5,7 +5,7 @@
 groups = ["default", "test"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:ce56d9682a6aa518184b81c4ab1957033caa7e326e0266de52df0fd2a18c36c3"
+content_hash = "sha256:bd95acea27c8f6d6203c73d8edb236a0ada0d460a231b4d5f7ac575007413416"
 
 [[package]]
 name = "anyio"
@@ -1414,20 +1414,6 @@ groups = ["default", "test"]
 files = [
     {file = "pygtrie-2.5.0-py3-none-any.whl", hash = "sha256:8795cda8105493d5ae159a5bef313ff13156c5d4d72feddefacaad59f8c8ce16"},
     {file = "pygtrie-2.5.0.tar.gz", hash = "sha256:203514ad826eb403dab1d2e2ddd034e0d1534bbe4dbe0213bb0593f66beba4e2"},
-]
-
-[[package]]
-name = "pyright"
-version = "1.1.344"
-requires_python = ">=3.7"
-summary = "Command line wrapper for pyright"
-groups = ["test"]
-dependencies = [
-    "nodeenv>=1.6.0",
-]
-files = [
-    {file = "pyright-1.1.344-py3-none-any.whl", hash = "sha256:ab7117a911ce25fcd317f42272579f9ae53a6abc8b8a15f6aa069a11281953ee"},
-    {file = "pyright-1.1.344.tar.gz", hash = "sha256:ab7c962f00dd8141a5a0192c1060fb34b92d1f9047ad70dda45229938051922b"},
 ]
 
 [[package]]
