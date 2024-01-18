@@ -1,7 +1,7 @@
 [project]
-name = "nonebot-plugin-prxiv"
+name = "nonebot-plugin-literature"
 version = "0.1.0"
-description = "prxiv as..."
+description = "build a world of open science."
 authors = [
     { name = "BalconyJH", email = "balconyjh@gmail.com" },
 ]
@@ -15,6 +15,7 @@ dependencies = [
     "pillow>=10.1.0",
     "nonebot-plugin-localstore>=0.5.1",
     "nonebot-plugin-apscheduler>=0.3.0",
+    "nonebot-plugin-htmlrender>=0.2.3",
 ]
 requires-python = ">=3.8.1"
 readme = "README.md"
@@ -29,8 +30,8 @@ adapters = [
     { name = "OneBot V12", module_name = "nonebot.adapters.onebot.v12", project_link = "nonebot-adapter-onebot", desc = "OneBot V12 协议" },
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11", project_link = "nonebot-adapter-onebot", desc = "OneBot V11 协议" },
 ]
-plugins = []
-plugin_dirs = ["src/nonebot_plugin_prxiv"]
+plugins = ["nonebot_plugin_htmlrender", "nonebot_plugin_saa", "nonebot_plugin_localstore"]
+plugin_dirs = ["src"]
 builtin_plugins = []
 
 [tool.pdm.dev-dependencies]
