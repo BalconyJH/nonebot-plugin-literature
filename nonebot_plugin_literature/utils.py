@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 import requests
 
-from nonebot_plugin_prxiv.model import Feed, Entry, Author
+from nonebot_plugin_literature.model import Feed, Entry, Author
 
 response = requests.get("http://example.com/api/some_atom_feed")
 path = Path(__file__).parent / "response.xml"

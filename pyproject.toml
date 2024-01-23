@@ -16,6 +16,7 @@ dependencies = [
     "nonebot-plugin-localstore>=0.5.1",
     "nonebot-plugin-apscheduler>=0.3.0",
     "nonebot-plugin-htmlrender>=0.2.3",
+    "niquests>=3.4.4",
 ]
 requires-python = ">=3.8.1"
 readme = "README.md"
@@ -30,10 +31,12 @@ adapters = [
     { name = "OneBot V12", module_name = "nonebot.adapters.onebot.v12", project_link = "nonebot-adapter-onebot", desc = "OneBot V12 协议" },
     { name = "OneBot V11", module_name = "nonebot.adapters.onebot.v11", project_link = "nonebot-adapter-onebot", desc = "OneBot V11 协议" },
 ]
-plugins = ["nonebot_plugin_htmlrender", "nonebot_plugin_saa", "nonebot_plugin_localstore"]
-plugin_dirs = ["src"]
+plugins = ["nonebot_plugin_literature"]
+plugin_dirs = []
 builtin_plugins = []
 
+[tool.pdm]
+distribution = true
 [tool.pdm.dev-dependencies]
 test = [
     "nonebug>=0.3.5",
@@ -43,13 +46,9 @@ test = [
     "pre-commit>=3.3.3",
     "flake8>=6.1.0",
     "nonebug-saa>=0.3.1",
-    "nb-cli>=1.2.8",
     "pytest-cov>=4.1.0",
     "pytest-xdist>=3.5.0",
 ]
-
-[tool.pdm]
-package-type = "library"
 
 [tool.black]
 line-length = 120
