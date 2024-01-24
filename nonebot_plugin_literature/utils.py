@@ -7,7 +7,6 @@ import requests
 from nonebot_plugin_literature.model import Feed, Entry, Author
 
 response = requests.get("http://example.com/api/some_atom_feed")
-path = Path(__file__).parent / "response.xml"
 
 
 async def load_xml(data: Union[str, Path]) -> ET.Element:
@@ -72,7 +71,11 @@ def parse_entry(entry_elem: ET.Element, ns: dict) -> Entry:
 
 async def atom_parser(data: ET.Element) -> Feed:
     """解析 Atom feed。"""
-    ns = {"atom": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
+    ns = {
+        "atom": "http://www.w3.org/2005/Atom",
+        "arxiv": "http://arxiv.org/schemas/atom",
+        "opensearch": "http://a9.com/-/spec/opensearch/1.1/",
+    }
 
     feed_info = {
         "title": find_text(data, "atom:title", ns),
