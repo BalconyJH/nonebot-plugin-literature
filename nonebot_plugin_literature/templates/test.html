@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ feed.title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        a {
+            color: #0275d8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .entry {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .entry:last-child {
+            border-bottom: 0;
+        }
+
+        .icon {
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<i data-feather="rss" class="icon"></i>
+<h1>{{ feed.title }}</h1>
+<p><i data-feather="calendar" class="icon"></i>Last Updated: {{ feed.updated }}</p>
+<p><i data-feather="database" class="icon"></i>Total Results: {{ feed.total_results }}</p>
+<p><i data-feather="file-text" class="icon"></i>Items Per Page: {{ feed.items_per_page }}</p>
+<p><i data-feather="hash" class="icon"></i>Start Index: {{ feed.start_index }}</p>
+<p><i data-feather="link" class="icon"></i>Link: <a href="{{ feed.link }}">{{ feed.link }}</a></p>
+
+<h2><i data-feather="list" class="icon"></i>Entries</h2>
+{% for entry in feed.entries %}
+    <div class="entry">
+        <h3><i data-feather="file" class="icon"></i>{{ entry.title }}</h3>
+        <p>ID: {{ entry.id }}</p>
+        <p><i data-feather="clock" class="icon"></i>Published: {{ entry.published }}</p>
+        <p><i data-feather="refresh-cw" class="icon"></i>Updated: {{ entry.updated }}</p>
+        <p>Summary: {{ entry.summary }}</p>
+        <p>DOI: {{ entry.doi }}</p>
+        <p>Journal Reference: {{ entry.journal_ref }}</p>
+        <p>Primary Category: {{ entry.primary_category }}</p>
+        <p>Comment: {{ entry.comment }}</p>
+        <p>Categories: {{ entry.categories | join(", ") }}</p>
+        <p>Links:
+            {% for link in entry.links %}
+                <a href="{{ link }}"><i data-feather="external-link" class="icon"></i>{{ link }}</a>
+            {% endfor %}
+        </p>
+        <p>Authors:
+            {% for author in entry.authors %}
+                <i data-feather="user" class="icon"></i>{{ author.name }} ({{ author.affiliation }})
+            {% endfor %}
+        </p>
+    </div>
+{% endfor %}
+<script src="./js/feather.js"></script>
+<script>
+    feather.replace();
+</script>
+</body>
+</html>
