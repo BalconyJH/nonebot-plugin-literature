@@ -227,11 +227,11 @@ class Client(BasicClient):
 
 
 class AsyncClient(BasicClient):
-    _async_session: httpx.AsyncClient
+    _async_client: httpx.AsyncClient
 
     def __init__(self, page_size: int = 100, delay_seconds: float = 3.0, num_retries: int = 3):
         super().__init__(page_size, delay_seconds, num_retries)
-        self._async_session = httpx.AsyncClient()
+        self._async_client = httpx.AsyncClient()
 
     async def results(self, search: Search, offset: int = 0) -> AsyncGenerator[Result, None]:
         """
@@ -267,7 +267,7 @@ class AsyncClient(BasicClient):
             yield result
             count += 1
 
-    async def _aresults(self, search: Search, offset: int = 0) -> Generator[Result, None, None]:
+    async def _aresults(self, search: Search, offset: int = 0) -> AsyncGenerator[Result, None]:
         page_url = self._format_url(search, offset, self.page_size)
         feed = self._parse_feed(page_url, first_page=True)
         if not feed.entries:
@@ -281,7 +281,7 @@ class AsyncClient(BasicClient):
         )
 
         while feed.entries:
-            for entry in feed.entries:
+            for _ in feed.entries:
                 try:
                     yield Result._from_feed_entry
                 except Result.MissingFieldError as e:
@@ -315,7 +315,8 @@ class AsyncClient(BasicClient):
 
         logger.info("Requesting page (first: %r, try: %d): %s", first_page, try_index, url)
 
-        async with self._async_session.get(url, headers={"user-agent": "arxiv.py/2.1.0"}) as resp:
+        async with self._async_client as session:
+            resp = await session.get(url, headers={"user-agent": "arxiv.py/2.1.0"})
             self._last_request_dt = datetime.now()
             if resp.status_code != httpx.codes.OK:
                 raise HTTPError(url, try_index, resp.status_code)
